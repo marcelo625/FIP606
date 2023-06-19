@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Marcelo">
+
+<title>Marcelo Gonçalves - Aula13</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Marcelo Gonçalves</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html">
+ <span class="menu-text">Início</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-básico" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">R básico</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-r-básico">    
+        <li>
+    <a class="dropdown-item" href="./what is r.html">
+ <span class="dropdown-text">O que é o R?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Aula 3.html">
+ <span class="dropdown-text">Importando Dataframes</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./topico2.html">
+ <span class="dropdown-text">Gráficos com Ggplot</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Aula 6.html">
+ <span class="dropdown-text">Gráficos de dispersão</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-estatística" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Estatística</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-estatística">    
+        <li>
+    <a class="dropdown-item" href="./Aula 7.html">
+ <span class="dropdown-text">Iniciando a estatística</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Aula 8.html">
+ <span class="dropdown-text">Calculando o Test T</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Aula 9.html">
+ <span class="dropdown-text">Premícias de um teste paramétrico</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Aula 10.html">
+ <span class="dropdown-text">ANOVA com 1 fator</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./aula11.html">
+ <span class="dropdown-text">ANOVA com 2 fatores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Aula13 (1).html">
+ <span class="dropdown-text">Regressão Linear</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./aula 14.html">
+ <span class="dropdown-text">Regressão Não Linear</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Aula 15.html">
+ <span class="dropdown-text">Reproduzindo Gráficos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./aula 18.html">
+ <span class="dropdown-text">ANOVA com 2 fatores sem normalidade</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-análises-espaciais" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Análises Espaciais</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-análises-espaciais">    
+        <li>
+    <a class="dropdown-item" href="./Aula 16.html">
+ <span class="dropdown-text">Criando Mapas</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/marcelo_hog"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/marcelo.625/"><i class="bi bi-instagram" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/marcelo625"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#dados-quantitativos-e-o-uso-de-análise-de-regressão" id="toc-dados-quantitativos-e-o-uso-de-análise-de-regressão" class="nav-link active" data-scroll-target="#dados-quantitativos-e-o-uso-de-análise-de-regressão">Dados quantitativos e o uso de análise de regressão</a>
+  <ul class="collapse">
+  <li><a href="#regressão-linear-simples" id="toc-regressão-linear-simples" class="nav-link" data-scroll-target="#regressão-linear-simples">Regressão linear simples</a>
+  <ul class="collapse">
+  <li><a href="#analisando-cada-experimento-isoladamente" id="toc-analisando-cada-experimento-isoladamente" class="nav-link" data-scroll-target="#analisando-cada-experimento-isoladamente">Analisando cada experimento isoladamente:</a></li>
+  </ul></li>
+  <li><a href="#modelo-misto" id="toc-modelo-misto" class="nav-link" data-scroll-target="#modelo-misto">Modelo misto</a></li>
+  </ul></li>
+  <li><a href="#modelo-glm" id="toc-modelo-glm" class="nav-link" data-scroll-target="#modelo-glm">Modelo GLM</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Aula13</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Marcelo </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="dados-quantitativos-e-o-uso-de-análise-de-regressão" class="level1">
+<h1>Dados quantitativos e o uso de análise de regressão</h1>
+<p>Quando se tem dados quantitativos, a análise de regressão é geralmente mais apropriada do que a análise de variância (ANOVA), pois a análise de regressão permite estudar a relação entre uma variável dependente (Y) e uma ou mais variáveis independentes (X).</p>
+<div class="cell" data-hash="Aula13--1-_cache/html/unnamed-chunk-1_aab81d93edbc7670b7e3ce1be5b28739">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="regressão-linear-simples" class="level2">
+<h2 class="anchored" data-anchor-id="regressão-linear-simples">Regressão linear simples</h2>
+<p>Na regressão linear simples, testamos a hipótese de que a reta de regressão (linha de melhor ajuste), que representa a relação entre as variáveis independentes e a variável dependente, tem um coeficiente de inclinação diferente de zero. Ou seja, testamos a hipótese de que a inclinação da reta de regressão é significativamente diferente de zero (testa se o p valor é diferente de 0).</p>
+<p>Conjunto de dados estande (dados-diversos): Visualização em ggplot Para ajustar para uma regressão linear usa-se o argumento method = “lm” dentro da função geom_smooth.</p>
+<div class="cell" data-hash="Aula13--1-_cache/html/unnamed-chunk-2_837b97bdff4644894975859bbcbcd8ba">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>estande <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"dados-diversos.xlsx"</span>, <span class="st">"estande"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>estande <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat, nplants))<span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> exp)<span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span>  F, <span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Aula13--1-_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Posteriomente, deve-se testar o modelo que melhor se ajusta aos dados.Pode-se testar fazer a análise de regressão para cada experimento (isola cada experimento) ou analisar em grupos (modelos mistos).</p>
+<section id="analisando-cada-experimento-isoladamente" class="level3">
+<h3 class="anchored" data-anchor-id="analisando-cada-experimento-isoladamente">Analisando cada experimento isoladamente:</h3>
+<p>Para isso, cria um novo objeto para os dados (exp1) e atribui estande a ele, depois deve-se filtrar o experimento que deseja e criar um objeto para esse conjunto para viabilizar a realização da análise de regressão.</p>
+<p>Exp 1:</p>
+<div class="cell" data-hash="Aula13--1-_cache/html/unnamed-chunk-3_06d5fe8fd99d5a34621f9e1064ebd126">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>exp1 <span class="ot">&lt;-</span> estande <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(exp <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(nplants <span class="sc">~</span>trat, <span class="at">data =</span> exp1)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = nplants ~ trat, data = exp1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-25.500  -6.532   1.758   8.573  27.226 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  52.5000     4.2044  12.487 1.84e-11 ***
+trat         -0.2419     0.1859  -1.301    0.207    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 15 on 22 degrees of freedom
+Multiple R-squared:  0.07148,   Adjusted R-squared:  0.02928 
+F-statistic: 1.694 on 1 and 22 DF,  p-value: 0.2066</code></pre>
+</div>
+</div>
+<p>O valor do intercept e o valor de trat (slope) são utilizados na tabela. Intercept é o valor da variável dependente quando a variável independente é igual a zero. Já o slope é a medida da inclinação da linha de regressão, que representa a mudança na variável dependente associada a uma mudança na variável independente.</p>
+<p>Para o experimento 2:</p>
+<div class="cell" data-hash="Aula13--1-_cache/html/unnamed-chunk-4_8587304274d8fd06fec4088073873582">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>exp2 <span class="ot">&lt;-</span> estande <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(exp <span class="sc">==</span> <span class="dv">2</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(nplants <span class="sc">~</span>trat, <span class="at">data =</span> exp2)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = nplants ~ trat, data = exp2)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-25.7816  -7.7150   0.5653   8.1929  19.2184 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  60.9857     3.6304  16.798 4.93e-14 ***
+trat         -0.7007     0.1605  -4.365 0.000247 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 12.95 on 22 degrees of freedom
+Multiple R-squared:  0.4641,    Adjusted R-squared:  0.4398 
+F-statistic: 19.05 on 1 and 22 DF,  p-value: 0.0002473</code></pre>
+</div>
+</div>
+<p>Para o exp3:</p>
+<div class="cell" data-hash="Aula13--1-_cache/html/unnamed-chunk-5_be89f164495691ce7d5a1794431ccd05">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>exp3 <span class="ot">&lt;-</span> estande <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(exp <span class="sc">==</span> <span class="dv">3</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(nplants <span class="sc">~</span>trat, <span class="at">data =</span> exp3)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = nplants ~ trat, data = exp3)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-26.5887  -3.9597   0.7177   5.5806  19.8952 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  95.7500     2.9529  32.425  &lt; 2e-16 ***
+trat         -0.7634     0.1306  -5.847 6.97e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 10.53 on 22 degrees of freedom
+Multiple R-squared:  0.6085,    Adjusted R-squared:  0.5907 
+F-statistic: 34.19 on 1 and 22 DF,  p-value: 6.968e-06</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(report)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(m3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>We fitted a linear model (estimated using OLS) to predict nplants with trat
+(formula: nplants ~ trat). The model explains a statistically significant and
+substantial proportion of variance (R2 = 0.61, F(1, 22) = 34.19, p &lt; .001, adj.
+R2 = 0.59). The model's intercept, corresponding to trat = 0, is at 95.75 (95%
+CI [89.63, 101.87], t(22) = 32.43, p &lt; .001). Within this model:
+
+  - The effect of trat is statistically significant and negative (beta = -0.76,
+95% CI [-1.03, -0.49], t(22) = -5.85, p &lt; .001; Std. beta = -0.78, 95% CI
+[-1.06, -0.50])
+
+Standardized parameters were obtained by fitting the model on a standardized
+version of the dataset. 95% Confidence Intervals (CIs) and p-values were
+computed using a Wald t-distribution approximation.</code></pre>
+</div>
+</div>
+<p>Gráfico para representar a regressão - Para unir os 3 graficos, usa o patchwork.</p>
+<div class="cell" data-hash="Aula13--1-_cache/html/unnamed-chunk-6_f86fda615768c2f37f3783436079de7e">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> exp1 <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat, nplants))<span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F)<span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">24</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> <span class="dv">70</span>, <span class="at">label =</span> <span class="st">"y = 52.5 - 0.24x"</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> exp2 <span class="sc">|&gt;</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat, nplants))<span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F)<span class="sc">+</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">24</span>,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> <span class="dv">70</span>, <span class="at">label =</span> <span class="st">"y = 60 - 0.07x"</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">&lt;-</span> exp3 <span class="sc">|&gt;</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat, nplants))<span class="sc">+</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F)<span class="sc">+</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">24</span>,</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> <span class="dv">70</span>, <span class="at">label =</span> <span class="st">"y = 95 - 0.07x"</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>g1<span class="sc">|</span>g2<span class="sc">|</span>g3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Aula13--1-_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="modelo-misto" class="level2">
+<h2 class="anchored" data-anchor-id="modelo-misto">Modelo misto</h2>
+<p>Em um modelo misto, as observações são divididas em grupos ou subgrupos. Cada grupo pode ter um conjunto diferente de efeitos aleatórios e/ou fixos, dependendo da estrutura dos dados. Por exemplo, se os dados foram coletados em diferentes locais geográficos, podemos ter um efeito aleatório para cada local (como no caso do conjunto de dados estande).</p>
+<div class="cell" data-hash="Aula13--1-_cache/html/unnamed-chunk-7_f9b2cd86970ba353b1840648afb5f6f3">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>mix <span class="ot">&lt;-</span> <span class="fu">lmer</span>(nplants <span class="sc">~</span>trat <span class="sc">+</span> (trat <span class="sc">|</span> exp),</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> estande)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed model fit by REML ['lmerMod']
+Formula: nplants ~ trat + (trat | exp)
+   Data: estande
+
+REML criterion at convergence: 580.8
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.0988 -0.6091  0.1722  0.6360  1.9963 
+
+Random effects:
+ Groups   Name        Variance  Std.Dev. Corr 
+ exp      (Intercept) 510.68405 22.5983       
+          trat          0.05516  0.2349  -0.82
+ Residual             167.91303 12.9581       
+Number of obs: 72, groups:  exp, 3
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)  69.7452    13.2146   5.278
+trat         -0.5687     0.1643  -3.462
+
+Correlation of Fixed Effects:
+     (Intr)
+trat -0.731
+optimizer (nloptwrap) convergence code: 0 (OK)
+Model failed to converge with max|grad| = 0.00274249 (tol = 0.002, component 1)</code></pre>
+</div>
+</div>
+<p>No contexto do modelo, as variáveis são definidas da seguinte forma:</p>
+<p>nplants: a variável de resposta, representando o número de plantas. trat: a variável preditora, representando o tratamento. exp: a variável agrupadora, representando os diferentes experimentos. A especificação (trat | exp) na fórmula do modelo indica que o efeito do tratamento (trat) varia aleatoriamente entre os diferentes experimentos (exp).</p>
+<p>O resumo do modelo fornecerá uma série de informações estatísticas relevantes, incluindo os coeficientes estimados para os efeitos fixos e aleatórios, bem como os seus erros-padrão e valores de t. Além disso, serão exibidas estatísticas de ajuste do modelo, como o desvio residual, a variação total e a variação explicada pelo modelo.</p>
+<div class="cell" data-hash="Aula13--1-_cache/html/unnamed-chunk-8_e62a8d9eea6fd7a86a8c0cac06573943">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Anova</span>(mix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Deviance Table (Type II Wald chisquare tests)
+
+Response: nplants
+      Chisq Df Pr(&gt;Chisq)    
+trat 11.985  1  0.0005362 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>Quando se usa o modelo misto, considera que todos os experimentos são agrupados, então considera que amostra é aleatória.</p>
+<p>Para fazer o modelo de regressão em grupo (misto) acrescenta-se na função aestetic o argumento group = exp.</p>
+<div class="cell" data-hash="Aula13--1-_cache/html/unnamed-chunk-9_05f5750c1aa262ba9398901c8ccf5646">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>estande <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"dados-diversos.xlsx"</span>, <span class="st">"estande"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>estande <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat, nplants, <span class="at">group =</span> exp))<span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#facet_wrap(~ exp)+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span>  F, <span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Aula13--1-_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Em geral, os modelos mistos são mais poderosos do que os modelos que tratam cada experimento isoladamente, pois levam em conta a variação tanto entre quanto dentro dos experimentos. Além disso, os modelos mistos permitem que os dados sejam analisados em sua totalidade, sem perder informações importantes sobre a estrutura dos dados.</p>
+</section>
+</section>
+<section id="modelo-glm" class="level1">
+<h1>Modelo GLM</h1>
+<p>O modelo linear generalizado é uma alternativa ao modelo linear. O GLM é considerado uma extensão do modelo linear que permite acomodar uma variedade de tipos de variáveis resposta, incluindo variáveis categóricas e contínuas. Além disso, o modelo linear generalizado permite que a relação entre a variável resposta e as variáveis explicativas seja não-linear. Ou seja, ele não se limita à suposição de que a relação é uma linha reta.</p>
+<div class="cell" data-hash="Aula13--1-_cache/html/unnamed-chunk-10_6de880747b7632d4859b0823603f42f6">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>lm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(nplants <span class="sc">~</span> trat, <span class="at">data =</span> exp3)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = nplants ~ trat, data = exp3)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-26.5887  -3.9597   0.7177   5.5806  19.8952 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  95.7500     2.9529  32.425  &lt; 2e-16 ***
+trat         -0.7634     0.1306  -5.847 6.97e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 10.53 on 22 degrees of freedom
+Multiple R-squared:  0.6085,    Adjusted R-squared:  0.5907 
+F-statistic: 34.19 on 1 and 22 DF,  p-value: 6.968e-06</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>glm1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(nplants <span class="sc">~</span> trat, <span class="at">family =</span> <span class="st">"gaussian"</span>,</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> exp3)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>glm2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(nplants <span class="sc">~</span> trat, <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> exp3)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(glm1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 185.0449</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(glm2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 183.9324</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = nplants ~ trat, family = "gaussian", data = exp3)
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  95.7500     2.9529  32.425  &lt; 2e-16 ***
+trat         -0.7634     0.1306  -5.847 6.97e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for gaussian family taken to be 110.9787)
+
+    Null deviance: 6235.8  on 23  degrees of freedom
+Residual deviance: 2441.5  on 22  degrees of freedom
+AIC: 185.04
+
+Number of Fisher Scoring iterations: 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = nplants ~ trat, family = poisson(link = "log"), 
+    data = exp3)
+
+Coefficients:
+             Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  4.571590   0.029539 154.762  &lt; 2e-16 ***
+trat        -0.009965   0.001488  -6.697 2.13e-11 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 77.906  on 23  degrees of freedom
+Residual deviance: 29.952  on 22  degrees of freedom
+AIC: 183.93
+
+Number of Fisher Scoring iterations: 4</code></pre>
+</div>
+</div>
+<p>O modelo linear generalizado com distribuição gaussiana (family = gaussian) é usado quando a variável resposta é contínua e tem uma distribuição normal, ou seja, o mesmo que “lm”. Já o modelo linear generalizado com distribuição de Poisson é usado quando a variável resposta é um número inteiro e não negativo e segue uma distribuição de Poisson (family = poisson). O AIC (Akaike’s Information Criterion) é um critério de seleção de modelo usado para escolher o melhor modelo entre vários modelos candidatos. A escolha do modelo com o menor AIC é importante porque ele é uma medida de qualidade do modelo que leva em consideração tanto o ajuste aos dados quanto a complexidade do modelo. Como o AIC de menor valor é melhor, a família poisson é o ideal para os dados analisados.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
